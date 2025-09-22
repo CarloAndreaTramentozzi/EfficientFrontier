@@ -1,4 +1,4 @@
-# Efficient Frontier — Analisi portafogli (Notebook)
+# Efficient Frontier — Analisi portafogli 
 
 **Breve descrizione**
 
