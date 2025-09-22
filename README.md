@@ -31,7 +31,7 @@ Questo repository contiene un Jupyter Notebook (`EfficientFrontier.ipynb`) che i
 
 ## Contenuto di `requirements.txt`
 
-Nel file `requirements.txt` ho inserito le librerie minime necessarie al notebook.
+Nel file `requirements.txt` ho inserito le librerie minime necessarie al notebook
 
 ```
 yfinance
@@ -42,5 +42,15 @@ random
 
 ```
 ---
+
+## Esempio risultato 
+
+Ecco un esempio della simulazione Monte Carlo dei portafogli:
+
+![Efficient Frontier](images/EF.png)
+
+
+## Considerazioni
+
 
 
