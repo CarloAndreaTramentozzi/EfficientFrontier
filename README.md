@@ -19,6 +19,7 @@ Questo repository contiene un Jupyter Notebook (`EfficientFrontier.ipynb`) che i
 1. **Scarico dati**: uso `yfinance` per scaricare i prezzi storici per i tickers scelti.
 2. **Pulizia & rendimenti**: calcolo rendimenti giornalieri con `pct_change()` e rimuovo i NaN; calcolo media dei rendimenti giornalieri e li annualizzo per ottenere una stima dei rendimenti attesi.
 3. **Covarianza**: calcolo la matrice di covarianza dei rendimenti e la annualizzo. È la base per calcolare la varianza del portafoglio
+La differenza tra calcolare i rendimenti e la volatilità di un singolo titolo e di un portafoglio è che due o piu titolo possonko essere correalti e quidni il semplice calcolo usato per i titoli non anrebbe a indicare il reale rischio del portafoglio. La formula $\sigma_p = \sqrt{w^T \Sigma w}$ tiene conto del rischio dei singoli titolo e delle loro correlaizioni facendo il prodotto vettoriale.
 4. **Generazione portafogli (Monte Carlo)**: genero 1000 set di pesi casuali (normalizzati in modo che sommino a 1), per ciascuno calcolo:
 
    * rendimento atteso del portafoglio: $\mu_p = w^T \mu$
@@ -51,6 +52,8 @@ Ecco un esempio della simulazione Monte Carlo dei portafogli:
 
 
 ## Considerazioni
+
+
 
 
 
