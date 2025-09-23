@@ -25,10 +25,9 @@ La differenza tra calcolare i rendimenti e la volatilità di un singolo titolo e
 
    * rendimento atteso del portafoglio: $\mu_p = w^T \mu$
    * volatilità del portafoglio: $\sigma_p = \sqrt{w^T \Sigma w}$
-   * Sharpe ratio = ($\mu_p - r_f) / \sigma_p$ (per semplicità si può mettere `r_f = 0`,
+   * Sharpe ratio = ($\mu_p - r_f) / \sigma_p$ (per semplicità si può mettere `rf = 0`,
    per praticità ho fissato tasso risk free al 2%)
 5. **Visualizzazioni**: scatter risk vs return (nuvola di portafogli), evidenziazione del portafoglio a varianza minima e del portafoglio a Sharpe massimo.
-6. **Output**: notebook produce grafici e un DataFrame riepilogativo (`Return`, `Volatility`, `Sharpe`, colonne `w_<TICKER>` per i pesi).
 
 ---
 
@@ -69,9 +68,26 @@ mean_returns = returns.mean() * 252
 #calcolo matrice covarianza annualizzata
 cov_matrix = returns.cov() * 252
 ```
+
+
 ---
 
-### Genero 1000 portafogli con pesi casuali e per ognugno calcolo rendimento, rischio e sharpratio
+##Creazione e confronto di un portafolgio equally weighted
+
+Creo un portafoglio con pesi uguali per ogni titolo e vado a calcolare ritorni e volatilià, per confrontarlo con i portafoglio generati successivamente 
+
+```
+n = len(tickers)
+eWeight = np.repeat(1/n, n) 
+eMUp = np.dot(eWeight,mean_returns)
+eDevp = np.sqrt(eWeight.T @ cov_matrix @ eWeight)
+eSharpe = (eMUp -rf)/eDevp
+ePortafoglio = [eMUp,eDevp,eSharpe,eWeight]  
+
+```
+---
+
+### Genero 1000 portafogli con pesi casuali e per ognugno calcolo rendimento, rischio e sharpe ratio
 
 ```
 weights = np.random.random(len(tickers))  
@@ -94,6 +110,7 @@ volatility = [p[1] for p in portafogli]
 
 plt.figure(figsize=(10,6))
 plt.scatter(volatility, returns, c=returns, cmap='viridis', marker='*')
+plt.scatter(ePortafoglio[1],ePortafoglio[0],color = "red",marker="D")
 plt.xlabel('Volatilità')
 plt.ylabel('Rendimento atteso')
 plt.title('Portafogli simulati - Monte Carlo')
@@ -106,35 +123,35 @@ plt.show()
 ## Esempio risultato efficient frontier
 
 Ecco un esempio della simulazione Monte Carlo dei portafogli:
+si nota dal grafico come la nuvola di portafogi sia addensata nella parte infeiore a sinistra, dunque basso rischio e bassi ritorni, inoltre segue la forma di un arco di parabola parallelo all'asse delle ascissa.
+Il rombo rosso rappresenta il il punto del piano identificato dal ritorno e al rischio del portafoglio equally weighted,si posizione in una parte del grafico in cui le performance sono basse. Dunqu abbiamo dimostrato che tramite monte carlo è possibile trovare una soluzione mgliore di distribuzione dei pesi all'interno del portafoglio.
 
 ![Efficient Frontier](images/EF.png)
 
 
-### Estraggo sharpratio e lo plotto
+### Estraggo sharpe ratio e lo plotto
+
+Il grafico dello sharpe ratio risulta più interessante poichè vi sono molti portafogli con dei buoni sharpe ratio in confronto alla volatilità. Lo sharpe ratio rappresentato dal portafoglio equally weighted ,rappresentato dal rombo rosso, si posiziona in modo decisamente migliore rispetto al grafico precedente sotto il punto di vista delle performanc.
 
 ```
 sharps = [p[2] for p in portafogli]
 plt.figure(figsize=(10,6))
 plt.scatter(volatility,sharps,c=sharps,cmap="rainbow",marker="*")
+plt.scatter(ePortafoglio[1],ePortafoglio[2],color = "blue",marker="D")
 plt.xlabel('volatility')
 plt.ylabel('sharpe ratio')
 plt.title('Sharp ratio to volatility')
 plt.colorbar(label='rendimento')
 plt.grid(True)
 plt.show
-```
-
-## Esempio risultato per sharp ratio
-
-
+``
+	
 ![Efficient Frontier](images/sharp.png)	
 
 
-##Creazione e confronto di un portafolgio equally weighted
-
-
-
 ## Considerazioni
+
+
 
 
 
