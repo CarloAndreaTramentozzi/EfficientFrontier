@@ -11,7 +11,7 @@ Questo repository contiene un Jupyter Notebook (`EfficientFrontier.ipynb`) che i
 * `EfficientFrontier.ipynb` — notebook principale (scarica dati, calcola statistiche, genera portafogli e plot)
 * `requirements.txt` — elenco delle librerie Python necessarie
 * `README.md` 
-* `images` -cartella per le immagini
+* `images` — cartella per le immagini
 
 ---
 
