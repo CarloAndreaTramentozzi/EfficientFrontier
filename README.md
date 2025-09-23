@@ -11,7 +11,7 @@ Questo repository contiene un Jupyter Notebook (`EfficientFrontier.ipynb`) che i
 * `EfficientFrontier.ipynb` — notebook principale (scarica dati, calcola statistiche, genera portafogli e plot)
 * `requirements.txt` — elenco delle librerie Python necessarie
 * `README.md` 
-* `images' -cartella per le immagini
+* `images` -cartella per le immagini
 
 ---
 
@@ -51,7 +51,7 @@ random
 ```
 
 tickers = ["AAPL", "MSFT", "GOOG", ...]
-data = yf.download(tickers, start="YYYY-MM-DD", end="YYYY-MM-DD")["Adj Close"]
+data = yf.download(tickers, start="YYYY-MM-DD", end="YYYY-MM-DD")["Close"]
 
 ```
 
@@ -60,7 +60,6 @@ data = yf.download(tickers, start="YYYY-MM-DD", end="YYYY-MM-DD")["Adj Close"]
 ### Caclolo rendimmenti giornalieri , annualizati e la matrice di covarianza annualizzata
 
 ```
-
 ## calcolo i rendimenti giornalieri dei singoli titoli  
 returns = data.pct_change().dropna() 
 
@@ -69,8 +68,6 @@ mean_returns = returns.mean() * 252
 
 #calcolo matrice covarianza annualizzata
 cov_matrix = returns.cov() * 252
-
-
 ```
 ---
 
@@ -84,7 +81,6 @@ MUp = np.dot(weights, mean_returns)
 DEVp = np.sqrt(weights.T @ cov_matrix @ weights)
 
 sharpe = (MUp - rf)/DEVp
-
 
 ```
 ---
@@ -113,6 +109,20 @@ Ecco un esempio della simulazione Monte Carlo dei portafogli:
 
 ![Efficient Frontier](images/EF.png)
 
+
+### Estraggo sharpratio e lo plotto
+
+```
+sharps = [p[2] for p in portafogli]
+plt.figure(figsize=(10,6))
+plt.scatter(volatility,sharps,c=sharps,cmap="rainbow",marker="*")
+plt.xlabel('volatility')
+plt.ylabel('sharpe ratio')
+plt.title('Sharp ratio to volatility')
+plt.colorbar(label='rendimento')
+plt.grid(True)
+plt.show
+```
 
 ## Esempio risultato per sharp ratio
 
