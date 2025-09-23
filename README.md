@@ -56,7 +56,7 @@ data = yf.download(tickers, start="YYYY-MM-DD", end="YYYY-MM-DD")["Close"]
 
 ---
 
-### Caclolo rendimmenti giornalieri , annualizati e la matrice di covarianza annualizzata
+### Calcolo rendimmenti giornalieri , annualizati e la matrice di covarianza annualizzata
 
 ```
 ## calcolo i rendimenti giornalieri dei singoli titoli  
@@ -72,7 +72,7 @@ cov_matrix = returns.cov() * 252
 
 ---
 
-##Creazione e confronto di un portafolgio equally weighted
+### Creazione e confronto di un portafolgio equally weighted
 
 Creo un portafoglio con pesi uguali per ogni titolo e vado a calcolare ritorni e volatilià, per confrontarlo con i portafoglio generati successivamente 
 
@@ -145,11 +145,10 @@ plt.colorbar(label='rendimento')
 plt.grid(True)
 plt.show
 ``
-	
 ![Efficient Frontier](images/sharp.png)	
 
 
-## Considerazioni
+### Considerazioni
 
 
 
