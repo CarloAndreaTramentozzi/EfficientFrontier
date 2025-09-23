@@ -144,7 +144,8 @@ plt.title('Sharp ratio to volatility')
 plt.colorbar(label='rendimento')
 plt.grid(True)
 plt.show
-``
+```
+
 ![Efficient Frontier](images/sharp.png)	
 
 
