@@ -124,7 +124,7 @@ plt.show()
 
 Ecco un esempio della simulazione Monte Carlo dei portafogli:
 si nota dal grafico come la nuvola di portafogi sia addensata nella parte infeiore a sinistra, dunque basso rischio e bassi ritorni, inoltre segue la forma di un arco di parabola parallelo all'asse delle ascissa.
-Il rombo rosso rappresenta il il punto del piano identificato dal ritorno e al rischio del portafoglio equally weighted,si posizione in una parte del grafico in cui le performance sono basse. Dunqu abbiamo dimostrato che tramite monte carlo è possibile trovare una soluzione mgliore di distribuzione dei pesi all'interno del portafoglio.
+Il rombo rosso rappresenta il il punto del piano identificato dal ritorno e al rischio del portafoglio equally weighted,si posizione in una parte del grafico in cui le performance sono basse. Quindi abbiamo dimostrato che tramite monte carlo è possibile trovare una soluzione mgliore di distribuzione dei pesi all'interno del portafoglio.
 
 ![Efficient Frontier](images/EF.png)
 
@@ -137,7 +137,7 @@ Il grafico dello sharpe ratio risulta più interessante poichè vi sono molti po
 sharps = [p[2] for p in portafogli]
 plt.figure(figsize=(10,6))
 plt.scatter(volatility,sharps,c=sharps,cmap="rainbow",marker="*")
-plt.scatter(ePortafoglio[1],ePortafoglio[2],color = "blue",marker="D")
+plt.scatter(ePortafoglio[1],ePortafoglio[2],color = "red",marker="D")
 plt.xlabel('volatility')
 plt.ylabel('sharpe ratio')
 plt.title('Sharp ratio to volatility')
